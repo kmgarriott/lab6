@@ -8,6 +8,8 @@ var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 
+var palettes = require('./routes/palette');
+
 var index = require('./routes/index');
 var project = require('./routes/project');
 // Example route
@@ -30,6 +32,7 @@ app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -38,6 +41,7 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/', index.view);
 app.get('/project/:id', project.projectInfo);
+app.get('/project/palette', project.projectInfo);
 // Example route
 // app.get('/users', user.list);
 
